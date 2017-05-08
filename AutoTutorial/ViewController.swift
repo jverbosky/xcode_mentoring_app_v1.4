@@ -73,7 +73,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
                 return
             }
             print("Successfully logged in with user: ", user ?? "")
-            
+            self.viewDidAppear(true)
         })
     
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
