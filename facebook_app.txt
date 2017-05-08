@@ -1,0 +1,16 @@
+1) Sign up for Facebook for Developers (developers.facebook.com)
+
+2) Create a new Facebook app
+
+3) Go to Settings to get the App ID and App Secret
+
+App ID:
+417265355316914
+
+App Secret:
+142ef1a746f73ca74c791a475a96028b
+
+
+
+Firebase Console - OAuth redirect URI to add to Facebook app configuration:
+https://mined-minds-mentoring.firebaseapp.com/__/auth/handler

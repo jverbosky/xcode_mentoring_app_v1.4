@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:AutoTutorial.xcodeproj">
+      location = "group:/Users/something/Dropbox/TechHire/xcode_mentoring_app_v1.4/Mined Minds Mentoring.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

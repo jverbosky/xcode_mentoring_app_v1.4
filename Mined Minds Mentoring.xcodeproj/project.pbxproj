@@ -18,10 +18,10 @@
 		0F9468891EBA94A400442C36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9468871EBA94A400442C36 /* LaunchScreen.storyboard */; };
 		0F9468941EBA94A400442C36 /* AutoTutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9468931EBA94A400442C36 /* AutoTutorialTests.swift */; };
 		0F94689F1EBA94A400442C36 /* AutoTutorialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F94689E1EBA94A400442C36 /* AutoTutorialUITests.swift */; };
-		0F9468AD1EBA955A00442C36 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F9468AC1EBA955A00442C36 /* GoogleService-Info.plist */; };
 		0F9860D01EBEBCF300C44319 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9860CF1EBEBCF300C44319 /* FBSDKCoreKit.framework */; };
 		0F9860D21EBEBD0B00C44319 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9860D11EBEBD0B00C44319 /* FBSDKLoginKit.framework */; };
 		0F9860D61EBEBD3600C44319 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9860D51EBEBD3600C44319 /* Bolts.framework */; };
+		B2B1A8DF1EC0F69C0072004A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2B1A8DE1EC0F69C0072004A /* GoogleService-Info.plist */; };
 		F5B720DC716360CA2094FC79 /* Pods_AutoTutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8122E1AE4801D213BD8B0A8F /* Pods_AutoTutorial.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,13 +61,13 @@
 		0F94689A1EBA94A400442C36 /* Mined Minds MentoringUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mined Minds MentoringUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F94689E1EBA94A400442C36 /* AutoTutorialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoTutorialUITests.swift; sourceTree = "<group>"; };
 		0F9468A01EBA94A400442C36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0F9468AC1EBA955A00442C36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F9860CE1EBE950900C44319 /* AutoTutorial.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoTutorial.entitlements; sourceTree = "<group>"; };
 		0F9860CF1EBEBCF300C44319 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		0F9860D11EBEBD0B00C44319 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		0F9860D51EBEBD3600C44319 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		562FF988BE532C9A349A8630 /* Pods-AutoTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoTutorial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AutoTutorial/Pods-AutoTutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		8122E1AE4801D213BD8B0A8F /* Pods_AutoTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoTutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2B1A8DE1EC0F69C0072004A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +131,7 @@
 				0F58EC641EBAC13400C64606 /* Images.xcassets */,
 				0F9468871EBA94A400442C36 /* LaunchScreen.storyboard */,
 				0F94688A1EBA94A400442C36 /* Info.plist */,
-				0F9468AC1EBA955A00442C36 /* GoogleService-Info.plist */,
+				B2B1A8DE1EC0F69C0072004A /* GoogleService-Info.plist */,
 				0F58EC621EBAA0D900C64606 /* MainController.swift */,
 				0F58EC661EBACA1500C64606 /* Mentors.swift */,
 				0F58EC681EBACE5400C64606 /* Mentees.swift */,
@@ -252,7 +252,13 @@
 						DevelopmentTeam = S3725VKX58;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -297,8 +303,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F9468891EBA94A400442C36 /* LaunchScreen.storyboard in Resources */,
+				B2B1A8DF1EC0F69C0072004A /* GoogleService-Info.plist in Resources */,
 				0F58EC651EBAC13400C64606 /* Images.xcassets in Resources */,
-				0F9468AD1EBA955A00442C36 /* GoogleService-Info.plist in Resources */,
 				0F9468841EBA94A400442C36 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

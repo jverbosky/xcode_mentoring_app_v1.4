@@ -25,14 +25,21 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //for google login button
+        setupFacebookButtons()
+        setupGoogleButtons()
+
+    }
+    
+    fileprivate func setupGoogleButtons() {
         let googleButton = GIDSignInButton()
         googleButton.frame = CGRect(x: 16, y: 100, width: view.frame.width - 32, height: 40)
         view.addSubview(googleButton)
         
         GIDSignIn.sharedInstance().uiDelegate = self
         
-        //for facebook login button
+    }
+    
+    fileprivate func setupFacebookButtons() {
         let loginButton = FBSDKLoginButton()
         view.addSubview(loginButton)
         loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 40)
