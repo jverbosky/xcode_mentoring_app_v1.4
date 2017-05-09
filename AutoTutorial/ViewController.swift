@@ -97,7 +97,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
         showEmailAddress()
     }
     
-    // Function to obtain email address and load main page on successful Facebook login
+    // Function to load main page on successful Facebook login
     func showEmailAddress() {
         let accessToken = FBSDKAccessToken.current()
         guard let accessTokenString = accessToken?.tokenString

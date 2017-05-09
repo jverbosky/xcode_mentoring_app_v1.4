@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func tokenRefreshNotification(_ notification: Notification) {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
-            evaluatePlist(refreshedToken)
+            evaluatePlist(self.fcmIdKey, refreshedToken)
             retrievePlistValues()
         }
         
@@ -149,16 +149,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             print("notifications are enabled")
         }
     }
-    
+
     // Function to determine if plist is already populated
-    func evaluatePlist(_ fcmIdValue:String) {
+    func evaluatePlist(_ key:String, _ value:String) {
         
         // Run function to add key/value pairs if plist empty, otherwise run function to update values
-        SwiftyPlistManager.shared.getValue(for: fcmIdKey, fromPlistWithName: dataPlistName) { (result, err) in
+        SwiftyPlistManager.shared.getValue(for: key, fromPlistWithName: dataPlistName) { (result, err) in
             if err != nil {
-                populatePlist(fcmIdKey, fcmIdValue)
+                populatePlist(key, value)
             } else {
-                updatePlist(fcmIdKey, fcmIdValue)
+                updatePlist(key, value)
             }
         }
     }
@@ -298,51 +298,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return handled
     }
     
-    // Function to handle successful Google signin
+    // Function to handle Google signin
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         if let error = error {
             print(error.localizedDescription)
             return
+        } else {
+            print("Successfully logged into Google")
+
+            if let email = user.profile.email {
+                self.usernameValue = String(describing: email)
+                print("---------->Current user: \(String(describing: email))")
+            } else {
+                self.usernameValue = "unknown"
+            }
+            self.checkPneStatus()
+            self.evaluatePlist(self.pneStatusKey, self.pneStatusValue)
+            self.evaluatePlist(self.usernameKey, self.usernameValue)
         }
-        
-        print("Successfully logged into Google")
-        
+            
         let authentication = user.authentication
         let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
                                                           accessToken: (authentication?.accessToken)!)
-        
+
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             print("User Signed in to Firebase")
-
             
             let _: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
             
             self.window?.rootViewController?.performSegue(withIdentifier: "goToHome", sender: nil)
             
         })
-        
     }
-    
-    // Function to obtain email address on successful Google login
-    func googleSignIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-                      withError error: NSError!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            // let userId = user.userID                  // For client-side use only!
-            // let idToken = user.authentication.idToken // Safe to send to the server
-            // let fullName = user.profile.name
-            // let givenName = user.profile.givenName
-            // let familyName = user.profile.familyName
-            let email = user.profile.email
-            print("---------->Current user: \(String(describing: email!))")
-            // self.usernameValue = email!
-        } else {
-            print("\(error.localizedDescription)")
-        }
-    }
-    
-    
-    
+
     // Function to handle disconnect from Google due to error
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
