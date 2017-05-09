@@ -1,0 +1,29 @@
+2017-05-09 00:55:09.949292-0400 Mined Minds Mentoring[269:9366] [Firebase/Messaging][I-IID001001] FIRInstanceID AppDelegate proxy enabled, will swizzle app delegate remote notification handlers. To disable add "FirebaseAppDelegateProxyEnabled" to your Info.plist and set it to NO
+2017-05-09 00:55:09.949 Mined Minds Mentoring[269] <Notice> [Firebase/Messaging][I-IID001001] FIRInstanceID AppDelegate proxy enabled, will swizzle app delegate remote notification handlers. To disable add "FirebaseAppDelegateProxyEnabled" to your Info.plist and set it to NO
+2017-05-09 00:55:09.954726-0400 Mined Minds Mentoring[269:9366] [Firebase/Messaging][I-FCM001000] FIRMessaging Remote Notifications proxy enabled, will swizzle remote notification receiver handlers. Add "FirebaseAppDelegateProxyEnabled" to your Info.plist and set it to NO
+2017-05-09 00:55:09.955 Mined Minds Mentoring[269] <Notice> [Firebase/Messaging][I-FCM001000] FIRMessaging Remote Notifications proxy enabled, will swizzle remote notification receiver handlers. Add "FirebaseAppDelegateProxyEnabled" to your Info.plist and set it to NO
+2017-05-09 00:55:10.044733-0400 Mined Minds Mentoring[269:9366] [Firebase/Analytics][I-ACS023007] Firebase Analytics v.3900000 started
+2017-05-09 00:55:10.049 Mined Minds Mentoring[269] <Notice> [Firebase/Analytics][I-ACS023007] Firebase Analytics v.3900000 started
+2017-05-09 00:55:10.050333-0400 Mined Minds Mentoring[269:9366] [Firebase/Analytics][I-ACS023008] To enable debug logging set the following application argument: -FIRAnalyticsDebugEnabled (see http://goo.gl/RfcP7r)
+2017-05-09 00:55:10.050 Mined Minds Mentoring[269] <Notice> [Firebase/Analytics][I-ACS023008] To enable debug logging set the following application argument: -FIRAnalyticsDebugEnabled (see http://goo.gl/RfcP7r)
+2017-05-09 00:55:10.055206-0400 Mined Minds Mentoring[269:9366] [Firebase/Analytics][I-ACS003007] Successfully created Firebase Analytics App Delegate Proxy automatically. To disable the proxy, set the flag FirebaseAppDelegateProxyEnabled to NO in the Info.plist
+2017-05-09 00:55:10.055 Mined Minds Mentoring[269] <Notice> [Firebase/Analytics][I-ACS003007] Successfully created Firebase Analytics App Delegate Proxy automatically. To disable the proxy, set the flag FirebaseAppDelegateProxyEnabled to NO in the Info.plist
+2017-05-09 00:55:10.236424-0400 Mined Minds Mentoring[269:9208] [LayoutConstraints] Unable to simultaneously satisfy constraints.
+  Probably at least one of the constraints in the following list is one you don't want. 
+  Try this: 
+    (1) look at each constraint and try to figure out which you don't expect; 
+    (2) find the code that added the unwanted constraint or constraints and fix it. 
+  (Note: If you're seeing NSAutoresizingMaskLayoutConstraints that you don't understand, refer to the documentation for the UIView property translatesAutoresizingMaskIntoConstraints) 
+(
+    "<NSAutoresizingMaskLayoutConstraint:0x1740901d0 h=--& v=--& FBSDKLoginButton:0x10161bf10'Log in'.height == 40   (active)>",
+    "<NSLayoutConstraint:0x170095e00 FBSDKLoginButton:0x10161bf10'Log in'.height == 28   (active)>"
+)
+
+Will attempt to recover by breaking constraint 
+<NSLayoutConstraint:0x170095e00 FBSDKLoginButton:0x10161bf10'Log in'.height == 28   (active)>
+
+Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKit/UIView.h> may also be helpful.
+fatal error: unexpectedly found nil while unwrapping an Optional value
+2017-05-09 00:55:10.284883-0400 Mined Minds Mentoring[269:9208] fatal error: unexpectedly found nil while unwrapping an Optional value
+(lldb) 

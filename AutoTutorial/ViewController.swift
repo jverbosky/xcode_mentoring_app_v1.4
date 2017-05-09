@@ -51,6 +51,24 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
         GIDSignIn.sharedInstance().uiDelegate = self
     }
     
+    // Function to obtain email address on successful Google login
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+                withError error: NSError!) {
+        if (error == nil) {
+            // Perform any operations on signed in user here.
+            // let userId = user.userID                  // For client-side use only!
+            // let idToken = user.authentication.idToken // Safe to send to the server
+            // let fullName = user.profile.name
+            // let givenName = user.profile.givenName
+            // let familyName = user.profile.familyName
+            let email = user.profile.email
+            print("---------->Current user: \(String(describing: email!))")
+            // self.usernameValue = email!
+        } else {
+            print("\(error.localizedDescription)")
+        }
+    }
+    
     // Function to load Facebook login button
     fileprivate func setupFacebookButtons() {
         let loginButton = FBSDKLoginButton()
@@ -103,20 +121,23 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
             print(result ?? "")
         }
     }
-
+    
     // Function to segue to homepage after authenticating via u/p login, Facebook or Google
     override func viewDidAppear(_ animated: Bool) {
         
         if FIRAuth.auth()?.currentUser != nil {
             let currentUser = FIRAuth.auth()!.currentUser!
-            // print("------->Current user: \(String(describing: currentUser.email!))")
-            self.usernameValue = String(describing: currentUser.email!)
+            // print("------->Current user: \(String(describing: currentUser.email))")
+            if let email = currentUser.email {
+                self.usernameValue = String(describing: email)
+            } else {
+                self.usernameValue = "unknown"
+            }
             self.checkPneStatus()
             self.evaluatePlist(self.pneStatusKey, self.pneStatusValue)
             self.evaluatePlist(self.usernameKey, self.usernameValue)
             self.postData()
             self.performSegue(withIdentifier: "goToHome", sender: self)
-
         }
     }
 
