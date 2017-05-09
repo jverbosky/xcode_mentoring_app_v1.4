@@ -138,6 +138,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
     }
     
+    // Function to determine push notification enablement status
+    func checkPneStatus() {
+        let notificationType = UIApplication.shared.currentUserNotificationSettings!.types
+        if notificationType == [] {
+            pneStatusValue = "0"
+            print("notifications are NOT enabled")
+        } else {
+            pneStatusValue = "1"
+            print("notifications are enabled")
+        }
+    }
+    
     // Function to determine if plist is already populated
     func evaluatePlist(_ fcmIdValue:String) {
         
@@ -244,8 +256,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // Function to post email and Firebase token to Sinatra app
     func postData() {
         
-        var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
-        // var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
+        // var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
+        var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
         
         let email = usernameValue
         let pneStatus = pneStatusValue
@@ -301,13 +313,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             print("User Signed in to Firebase")
+
             
             let _: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
             
             self.window?.rootViewController?.performSegue(withIdentifier: "goToHome", sender: nil)
+            
         })
         
     }
+    
+    // Function to obtain email address on successful Google login
+    func googleSignIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+                      withError error: NSError!) {
+        if (error == nil) {
+            // Perform any operations on signed in user here.
+            // let userId = user.userID                  // For client-side use only!
+            // let idToken = user.authentication.idToken // Safe to send to the server
+            // let fullName = user.profile.name
+            // let givenName = user.profile.givenName
+            // let familyName = user.profile.familyName
+            let email = user.profile.email
+            print("---------->Current user: \(String(describing: email!))")
+            // self.usernameValue = email!
+        } else {
+            print("\(error.localizedDescription)")
+        }
+    }
+    
+    
     
     // Function to handle disconnect from Google due to error
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {

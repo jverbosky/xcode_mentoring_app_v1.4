@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,10 +24,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="bV2-Te-ciy">
-                                <rect key="frame" x="16" y="199.5" width="343" height="268"/>
+                                <rect key="frame" x="16" y="211.5" width="343" height="268"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kBH-aJ-hCp">
-                                        <rect key="frame" x="100" y="0.0" width="143" height="37"/>
+                                        <rect key="frame" x="107" y="0.0" width="129" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="wga-Pt-5KE"/>
                                         </constraints>
@@ -79,20 +80,28 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="8yV-rG-E0t" secondAttribute="trailing" id="5x9-cD-Q2h"/>
                                     <constraint firstAttribute="trailing" secondItem="NmA-Vs-Rfw" secondAttribute="trailing" id="7Js-Cb-O8S"/>
+                                    <constraint firstItem="kBH-aJ-hCp" firstAttribute="centerX" secondItem="bV2-Te-ciy" secondAttribute="centerX" id="8GC-1M-rcY"/>
                                     <constraint firstAttribute="trailing" secondItem="NaS-eE-3e7" secondAttribute="trailing" constant="100" id="B3z-mD-LBs"/>
                                     <constraint firstItem="NaS-eE-3e7" firstAttribute="leading" secondItem="bV2-Te-ciy" secondAttribute="leading" constant="100" id="OxU-s8-CcT"/>
                                     <constraint firstItem="NmA-Vs-Rfw" firstAttribute="leading" secondItem="bV2-Te-ciy" secondAttribute="leading" id="Qxg-xP-5sW"/>
-                                    <constraint firstAttribute="trailing" secondItem="kBH-aJ-hCp" secondAttribute="trailing" constant="100" id="Z9C-XP-67Z"/>
                                     <constraint firstItem="8yV-rG-E0t" firstAttribute="leading" secondItem="bV2-Te-ciy" secondAttribute="leading" id="ZaE-pR-rGg"/>
-                                    <constraint firstItem="kBH-aJ-hCp" firstAttribute="leading" secondItem="bV2-Te-ciy" secondAttribute="leading" constant="100" id="uge-ar-uez"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="MMMentoringLogo.png" highlightedImage="MMMentoringLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="LDs-6D-WBM">
+                                <rect key="frame" x="72" y="41" width="230" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LDs-6D-WBM" secondAttribute="height" multiplier="15:8" id="vOy-kU-2qy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.40392156862745099" green="0.40784313725490196" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="bV2-Te-ciy" firstAttribute="top" secondItem="LDs-6D-WBM" secondAttribute="bottom" constant="20" id="Dwz-U4-GZE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LDs-6D-WBM" secondAttribute="trailing" constant="30" id="Eq1-5i-NJF"/>
                             <constraint firstItem="bV2-Te-ciy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Ryl-7r-TCj"/>
+                            <constraint firstItem="LDs-6D-WBM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S4G-00-b7R"/>
+                            <constraint firstItem="LDs-6D-WBM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="l79-01-La2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bV2-Te-ciy" secondAttribute="trailing" id="s0Y-UQ-HGN"/>
-                            <constraint firstItem="bV2-Te-ciy" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="y6r-f5-Cvp"/>
                         </constraints>
                     </view>
                     <connections>
@@ -106,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+            <point key="canvasLocation" x="117.5" y="123.5"/>
         </scene>
         <!--Mined Minds Mentoring-->
         <scene sceneID="4Az-VM-663">
@@ -556,7 +565,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="331-V8-VI0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u9Q-0u-fGb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="u9Q-0u-fGb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -576,6 +585,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="MMMentoringLogo.png" width="786" height="466"/>
         <image name="Menu" width="25" height="25"/>
         <image name="logo" width="83" height="83"/>
         <image name="notifications" width="25" height="25"/>

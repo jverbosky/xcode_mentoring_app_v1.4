@@ -45,35 +45,38 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
     // Function to load Google login button
     fileprivate func setupGoogleButtons() {
         let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: 16, y: 100, width: view.frame.width - 32, height: 40)
+        // googleButton.frame = CGRect(x: 16, y: 100, width: view.frame.width - 32, height: 40)
+        googleButton.frame = CGRect(x: 16, y: 600, width: view.frame.width - 32, height: 40)
         view.addSubview(googleButton)
         
         GIDSignIn.sharedInstance().uiDelegate = self
+        print("------> setupGoogleButtons")
     }
     
-    // Function to obtain email address on successful Google login
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-                withError error: NSError!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            // let userId = user.userID                  // For client-side use only!
-            // let idToken = user.authentication.idToken // Safe to send to the server
-            // let fullName = user.profile.name
-            // let givenName = user.profile.givenName
-            // let familyName = user.profile.familyName
-            let email = user.profile.email
-            print("---------->Current user: \(String(describing: email!))")
-            // self.usernameValue = email!
-        } else {
-            print("\(error.localizedDescription)")
-        }
-    }
+//    // Function to obtain email address on successful Google login
+//    func googleSignIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+//                withError error: NSError!) {
+//        if (error == nil) {
+//            // Perform any operations on signed in user here.
+//            // let userId = user.userID                  // For client-side use only!
+//            // let idToken = user.authentication.idToken // Safe to send to the server
+//            // let fullName = user.profile.name
+//            // let givenName = user.profile.givenName
+//            // let familyName = user.profile.familyName
+//            let email = user.profile.email
+//            print("---------->Current user: \(String(describing: email!))")
+//            // self.usernameValue = email!
+//        } else {
+//            print("\(error.localizedDescription)")
+//        }
+//    }
     
     // Function to load Facebook login button
     fileprivate func setupFacebookButtons() {
         let loginButton = FBSDKLoginButton()
         view.addSubview(loginButton)
-        loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 40)
+        // loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 40)
+        loginButton.frame = CGRect(x: 16, y: 550, width: view.frame.width - 32, height: 40)
         
         loginButton.delegate = self
         
@@ -312,8 +315,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
     // Function to post email and Firebase token to Sinatra app
     func postData() {
         
-        var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
-        // var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
+        // var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
+        var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
         
         let email = usernameValue
         let pneStatus = pneStatusValue
