@@ -256,8 +256,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // Function to post email and Firebase token to Sinatra app
     func postData() {
         
-        // var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
-        var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
+        var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
+        // var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
         
         let email = usernameValue
         let pneStatus = pneStatusValue
