@@ -21,8 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
     let dataPlistName = "Login"
+    let usernameKey = "username"  // plist username key
+    let pneStatusKey = "pneStatus"  // push notification enablement status key
     let fcmIdKey = "fcmId"  // plist fcmId key
-    var fcmIDValue:String = ""  // fcmId value to save to plist
+    var usernameValue:String = ""  // plist username value to post to Sinatra app
+    var pneStatusValue:String = ""  // push notification enablement status value to post to Sinatra app
+    var fcmIdValue:String = ""  // plist fcmID value to post to Sinatra app
 
     // Function to handle actions when app launches
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -59,6 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         // Initialize plist if present, otherwise copy over Login.plist file into app's Documents directory
         SwiftyPlistManager.shared.start(plistNames: [dataPlistName], logging: false)
+        
+        // Keep launch screen up to give Firebase a chance to retrieve token
+        // Thread.sleep(forTimeInterval: 2.0)
         
         // Facebook initialization
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -108,6 +115,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
             evaluatePlist(refreshedToken)
+            // postData()
+            retrieveValues()
         }
         
         // Connect to FCM since connection may have failed when attempted before having a token.
@@ -163,6 +172,147 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
         }
     }
+
+    // Function to read email key/value pairs out of plist
+    func readPlistEmail(_ key:Any) {
+        
+        // Retrieve value
+        SwiftyPlistManager.shared.getValue(for: key as! String, fromPlistWithName: dataPlistName) { (result, err) in
+            if err == nil {
+                guard let result = result else {
+                    print("-------------> The Value for Key '\(key)' does not exists.")
+                    return
+                }
+                usernameValue = result as! String
+                print("------------> The value for the emailValue variable is \(usernameValue).")
+            } else {
+                print("No key in there!")
+            }
+        }
+    }
+    
+    // Function to read push notification enablement status key/value pairs out of plist
+    func readPlistPneStatus(_ key:Any) {
+        
+        // Retrieve value
+        SwiftyPlistManager.shared.getValue(for: key as! String, fromPlistWithName: dataPlistName) { (result, err) in
+            if err == nil {
+                guard let result = result else {
+                    print("-------------> The Value for Key '\(key)' does not exists.")
+                    return
+                }
+                pneStatusValue = result as! String
+                print("------------> The value for the pneStatusValue variable is \(pneStatusValue).")
+            } else {
+                print("No key in there!")
+            }
+        }
+    }
+    
+    // Function to read fcmID key/value pairs out of plist
+    func readPlistFcm(_ key:Any) {
+        
+        // Retrieve value
+        SwiftyPlistManager.shared.getValue(for: key as! String, fromPlistWithName: dataPlistName) { (result, err) in
+            if err == nil {
+                guard let result = result else {
+                    print("-------------> The Value for Key '\(key)' does not exists.")
+                    return
+                }
+                fcmIdValue = result as! String
+                print("------------> The value for the fcmIdValue variable is \(fcmIdValue).")
+            } else {
+                print("No key in there!")
+            }
+        }
+    }   
+    
+    // Function to asynchronously retrive plist values so login can continue without hanging app
+    func retrieveValues() {
+        
+        if usernameValue == "" {
+            DispatchQueue.global(qos: .userInteractive).async {
+                self.readPlistEmail(self.usernameKey)  // update usernameValue with plist value
+                self.readPlistPneStatus(self.pneStatusKey)  // update pneStatusValue with plist value
+                self.readPlistFcm(self.fcmIdKey)  // update fcmIdValue with plist value
+                Thread.sleep(forTimeInterval: 3.0)
+                self.retrieveValues()
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.postData()
+            }
+        }
+    }
+    
+    // Function to post email and Firebase token to Sinatra app
+    func postData() {
+        
+        // var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
+        var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
+        
+        // Give Firebase a chance to retrieve token
+        // Thread.sleep(forTimeInterval: 3.0)
+        
+        // readPlistEmail(usernameKey)  // update usernameValue with plist value
+        // readPlistPneStatus(pneStatusKey)  // update pneStatusValue with plist value
+        
+        //
+        //        print("--------> sleeping for 3 seconds to give Firebase token a chance to be retrieved")
+        //
+        //        // Give Firebase a chance to retrieve token
+        //        Thread.sleep(forTimeInterval: 3.0)
+        
+//        if usernameValue == "" {
+//            Thread.sleep(forTimeInterval: 10.0)
+//            postData()
+//        }
+
+        
+        // readPlistFcm(fcmIdKey)  // update fcmIdValue with plist value
+        
+        // print("--------> Try reading fcmIdKey value \(self.fcmIdValue)")
+        
+        // If Firebase callback has not returned ID yet, "sleep" for 2 seconds
+        // if self.fcmIdValue == "" {
+            // print("--------> fcmIdKey value empty, so sleep for 3 seconds")
+            // Keep launch screen up to give Firebase a chance to retrieve token
+            // Thread.sleep(forTimeInterval: 3.0)
+            
+            //            let when = DispatchTime.now() + 2
+            //            DispatchQueue.main.asyncAfter(deadline: when) {
+            // self.readPlistFcm(self.fcmIdKey)
+            // print("-------> fcmIdKey value after sleep: \(self.fcmIdValue)")
+            //            }
+        // }
+        
+        let email = usernameValue
+        let pneStatus = pneStatusValue
+        let fcmID = fcmIdValue
+        let postString = "email=\(email)&pne_status=\(pneStatus)&fcm_id=\(String(describing: fcmID))"
+        
+        print("-------------> POSTing data......")
+        
+        request.httpMethod = "POST"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(String(describing: responseString))")
+        }
+        task.resume()
+    }
+    
     
     // Function to handle Facebook signin
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

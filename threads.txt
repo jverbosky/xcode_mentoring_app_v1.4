@@ -1,0 +1,28 @@
+- Put item in background thread 
+
+
+override func viewDidLoad() {
+
+// main thread functions
+
+
+// background is the lowest priority
+// DispatchQueue.global(qos: .background).async {
+
+// Background thread to wait for all plist data to be collected
+DispatchQueue.global(qos: .userInteractive).async {
+	self.tableData = Data.getData()
+	
+	// return to the main thread
+	DispatchQueue.main.async {
+	
+	// run function again
+	self.tableView.reloadData()
+	
+	}
+}
+
+// other thread functions that continue running
+
+
+}
