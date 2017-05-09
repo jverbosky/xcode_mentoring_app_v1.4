@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AutoTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Mined_Minds_Mentoring" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -45,23 +45,23 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8yV-rG-E0t">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8yV-rG-E0t">
                                         <rect key="frame" x="0.0" y="110" width="343" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="WFY-EI-vga"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NmA-Vs-Rfw">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NmA-Vs-Rfw">
                                         <rect key="frame" x="0.0" y="171" width="343" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="RUZ-6p-kg5"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NaS-eE-3e7">
                                         <rect key="frame" x="100" y="232" width="143" height="36"/>
@@ -111,7 +111,7 @@
         <!--Mined Minds Mentoring-->
         <scene sceneID="4Az-VM-663">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="e4T-jA-YYY" customClass="MainController" customModule="AutoTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="e4T-jA-YYY" customClass="MainController" customModule="Mined_Minds_Mentoring" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HC8-Xq-6Es"/>
                         <viewControllerLayoutGuide type="bottom" id="cgk-1l-44Y"/>
@@ -289,7 +289,7 @@
         <!--Mentees-->
         <scene sceneID="wbW-D6-gxJ">
             <objects>
-                <viewController id="Feu-eW-cVy" customClass="Mentees" customModule="AutoTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Feu-eW-cVy" customClass="Mentees" customModule="Mined_Minds_Mentoring" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tV4-Op-sh6"/>
                         <viewControllerLayoutGuide type="bottom" id="uNP-x7-1nW"/>
@@ -376,7 +376,7 @@
         <!--Request-->
         <scene sceneID="EsJ-nc-Q3w">
             <objects>
-                <viewController id="OZF-Ux-UFz" customClass="Request" customModule="AutoTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OZF-Ux-UFz" customClass="Request" customModule="Mined_Minds_Mentoring" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mdm-oU-ipg"/>
                         <viewControllerLayoutGuide type="bottom" id="SCz-Ia-ssm"/>
@@ -463,7 +463,7 @@
         <!--Mentors-->
         <scene sceneID="758-gX-Alw">
             <objects>
-                <viewController id="7ik-O3-WrP" customClass="Mentors" customModule="AutoTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7ik-O3-WrP" customClass="Mentors" customModule="Mined_Minds_Mentoring" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wbh-m1-JaH"/>
                         <viewControllerLayoutGuide type="bottom" id="oI8-Rj-9c4"/>
@@ -556,7 +556,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="331-V8-VI0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="u9Q-0u-fGb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u9Q-0u-fGb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -581,7 +581,7 @@
         <image name="notifications" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dRh-MK-u0h"/>
+        <segue reference="UCT-2U-nOK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
