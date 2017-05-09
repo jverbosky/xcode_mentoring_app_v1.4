@@ -1,6 +1,7 @@
-- Put item in background thread 
-
-
+- Put functions in background thread 
+——————————————————
+Example
+——————————————————
 override func viewDidLoad() {
 
 // main thread functions
@@ -26,3 +27,40 @@ DispatchQueue.global(qos: .userInteractive).async {
 
 
 }
+
+——————————————————
+iOS Mentoring App
+——————————————————
+AppDelegate.swift, 
+
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+
+    // Function to asynchronously retrive plist values so login can continue without hanging app
+    func retrievePlistValues() {
+        
+        if usernameValue == "" {
+            DispatchQueue.global(qos: .userInteractive).async {
+                self.readPlistEmail(self.usernameKey)  // update usernameValue with plist value
+                self.readPlistPneStatus(self.pneStatusKey)  // update pneStatusValue with plist value
+                self.readPlistFcm(self.fcmIdKey)  // update fcmIdValue with plist value
+                Thread.sleep(forTimeInterval: 3.0)
+                self.retrievePlistValues()
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.postData()
+            }
+        }
+    }
+
+}
+
+——————————————————
+
+I was finally able to get all of the data POSTing successfully with the Facebook login.  ^_^;
+
+The main issue was that the retrieval of the Firebase token (instance ID) is asynchronous, so sometimes it would be retrieved right after the app loaded and other times it wouldn’t be retrieved until after the user had already signed into Facebook.
+
+I played with adding sleep timers in a few different places, but those just ended up hanging the app if the Firebase token hadn’t been retrieved yet.
+
+I ultimately got this working by moving the functions that retrieve data from the plist into a second lower-priority thread, so that it could run in the background without interfering with the Facebook login process.  The way it works now is that the data is only POSTed once the plist is completely populated, which may take several seconds to occur based on when the Firebase token is retrieved.
