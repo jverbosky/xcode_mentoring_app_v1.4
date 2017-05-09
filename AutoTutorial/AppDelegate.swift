@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  AutoTutorial
 //
-//  Created by Tula Ram Subba on 5/3/17.
+//  Created by Tula Ram Subba and John Verbosky on 5/9/17.
 //  Copyright © 2017 Tula Ram Subba. All rights reserved.
 //
 
@@ -64,13 +64,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Initialize plist if present, otherwise copy over Login.plist file into app's Documents directory
         SwiftyPlistManager.shared.start(plistNames: [dataPlistName], logging: false)
         
-        // Keep launch screen up to give Firebase a chance to retrieve token
-        // Thread.sleep(forTimeInterval: 2.0)
-        
-        // Facebook initialization
+        // Facebook login initialization
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        // Google initialization
+        // Google login initialization
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
@@ -115,8 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
             evaluatePlist(refreshedToken)
-            // postData()
-            retrieveValues()
+            retrievePlistValues()
         }
         
         // Connect to FCM since connection may have failed when attempted before having a token.
@@ -228,7 +224,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }   
     
     // Function to asynchronously retrive plist values so login can continue without hanging app
-    func retrieveValues() {
+    func retrievePlistValues() {
         
         if usernameValue == "" {
             DispatchQueue.global(qos: .userInteractive).async {
@@ -236,7 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 self.readPlistPneStatus(self.pneStatusKey)  // update pneStatusValue with plist value
                 self.readPlistFcm(self.fcmIdKey)  // update fcmIdValue with plist value
                 Thread.sleep(forTimeInterval: 3.0)
-                self.retrieveValues()
+                self.retrievePlistValues()
             }
         } else {
             DispatchQueue.main.async {
@@ -248,43 +244,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // Function to post email and Firebase token to Sinatra app
     func postData() {
         
-        // var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
-        var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
-        
-        // Give Firebase a chance to retrieve token
-        // Thread.sleep(forTimeInterval: 3.0)
-        
-        // readPlistEmail(usernameKey)  // update usernameValue with plist value
-        // readPlistPneStatus(pneStatusKey)  // update pneStatusValue with plist value
-        
-        //
-        //        print("--------> sleeping for 3 seconds to give Firebase token a chance to be retrieved")
-        //
-        //        // Give Firebase a chance to retrieve token
-        //        Thread.sleep(forTimeInterval: 3.0)
-        
-//        if usernameValue == "" {
-//            Thread.sleep(forTimeInterval: 10.0)
-//            postData()
-//        }
-
-        
-        // readPlistFcm(fcmIdKey)  // update fcmIdValue with plist value
-        
-        // print("--------> Try reading fcmIdKey value \(self.fcmIdValue)")
-        
-        // If Firebase callback has not returned ID yet, "sleep" for 2 seconds
-        // if self.fcmIdValue == "" {
-            // print("--------> fcmIdKey value empty, so sleep for 3 seconds")
-            // Keep launch screen up to give Firebase a chance to retrieve token
-            // Thread.sleep(forTimeInterval: 3.0)
-            
-            //            let when = DispatchTime.now() + 2
-            //            DispatchQueue.main.asyncAfter(deadline: when) {
-            // self.readPlistFcm(self.fcmIdKey)
-            // print("-------> fcmIdKey value after sleep: \(self.fcmIdValue)")
-            //            }
-        // }
+        var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
+        // var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
         
         let email = usernameValue
         let pneStatus = pneStatusValue

@@ -25,10 +25,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
     let dataPlistName = "Login"
     let usernameKey = "username"  // plist username key
     let pneStatusKey = "pneStatus"  // push notification enablement status key
-    // let fcmIdKey = "fcmId"  // plist fcmId key
     var usernameValue:String = ""  // plist username value to post to Sinatra app
     var pneStatusValue:String = ""  // push notification enablement status value to post to Sinatra app
-    // var fcmIdValue:String = ""  // plist fcmID value to post to Sinatra app
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,10 +137,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
             self.checkPneStatus()
             self.evaluatePlist(self.pneStatusKey, self.pneStatusValue)
             self.evaluatePlist(self.usernameKey, self.usernameValue)
-            
-            // Give app a chance to retrieve Firebase token before attempting to POST
-            // Thread.sleep(forTimeInterval: 3.0)
-            // self.postData()
         }
     }
 
@@ -167,7 +161,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
             self.checkPneStatus()
             self.evaluatePlist(self.pneStatusKey, self.pneStatusValue)
             self.evaluatePlist(self.usernameKey, email)
-            // self.postData()
             
             if isSignIn {
                 FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
@@ -240,118 +233,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
             }
         }
     }
-    
-//    // Function to read email key/value pairs out of plist
-//    func readPlistEmail(_ key:Any) {
-//        
-//        // Retrieve value
-//        SwiftyPlistManager.shared.getValue(for: key as! String, fromPlistWithName: dataPlistName) { (result, err) in
-//            if err == nil {
-//                guard let result = result else {
-//                    print("-------------> The Value for Key '\(key)' does not exists.")
-//                    return
-//                }
-//                print("------------> The value for the emailValue variable is \(usernameValue).")
-//                usernameValue = result as! String
-//            } else {
-//                print("No key in there!")
-//            }
-//        }
-//    }
-//    
-//    // Function to read push notification enablement status key/value pairs out of plist
-//    func readPlistPneStatus(_ key:Any) {
-//        
-//        // Retrieve value
-//        SwiftyPlistManager.shared.getValue(for: key as! String, fromPlistWithName: dataPlistName) { (result, err) in
-//            if err == nil {
-//                guard let result = result else {
-//                    print("-------------> The Value for Key '\(key)' does not exists.")
-//                    return
-//                }
-//                print("------------> The value for the pneStatusValue variable is \(pneStatusValue).")
-//                pneStatusValue = result as! String
-//            } else {
-//                print("No key in there!")
-//            }
-//        }
-//    }
-//    
-//    // Function to read fcmID key/value pairs out of plist
-//    func readPlistFcm(_ key:Any) {
-//        
-//        // Retrieve value
-//        SwiftyPlistManager.shared.getValue(for: key as! String, fromPlistWithName: dataPlistName) { (result, err) in
-//            if err == nil {
-//                guard let result = result else {
-//                    print("-------------> The Value for Key '\(key)' does not exists.")
-//                    return
-//                }
-//                fcmIdValue = result as! String
-//                print("------------> The value for the fcmIdValue variable is \(fcmIdValue).")
-//            } else {
-//                print("No key in there!")
-//            }
-//        }
-//    }
-    
-//    // Function to post email and Firebase token to Sinatra app
-//    func postData() {
-//        
-//        // var request = URLRequest(url: URL(string: "https://mm-pushnotification.herokuapp.com/post_id")!)  // test to project Heroku-hosted app
-//        var request = URLRequest(url: URL(string: "https://ios-post-proto-jv.herokuapp.com/post_id")!)  // test to prototype Heroku-hosted app
-//        
-//        readPlistEmail(usernameKey)  // update usernameValue with plist value
-//        readPlistPneStatus(pneStatusKey)  // update pneStatusValue with plist value
-////        
-////        print("--------> sleeping for 3 seconds to give Firebase token a chance to be retrieved")
-////        
-////        // Give Firebase a chance to retrieve token
-////        Thread.sleep(forTimeInterval: 3.0)
-//        
-//        readPlistFcm(fcmIdKey)  // update fcmIdValue with plist value
-//        
-//        // print("--------> Try reading fcmIdKey value \(self.fcmIdValue)")
-//        
-//        // If Firebase callback has not returned ID yet, "sleep" for 2 seconds
-//        if self.fcmIdValue == "" {
-//            print("--------> fcmIdKey value empty, so sleep for 3 seconds")
-//            // Keep launch screen up to give Firebase a chance to retrieve token
-//            Thread.sleep(forTimeInterval: 3.0)
-//            
-////            let when = DispatchTime.now() + 2
-////            DispatchQueue.main.asyncAfter(deadline: when) {
-//                self.readPlistFcm(self.fcmIdKey)
-//                print("-------> fcmIdKey value after sleep: \(self.fcmIdValue)")
-////            }
-//        }
-//        
-//        let email = usernameValue
-//        let pneStatus = pneStatusValue
-//        let fcmID = fcmIdValue
-//        let postString = "email=\(email)&pne_status=\(pneStatus)&fcm_id=\(String(describing: fcmID))"
-//        
-//        print("-------------> POSTing data......")
-//        
-//        request.httpMethod = "POST"
-//        request.httpBody = postString.data(using: .utf8)
-//        
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-//                print("error=\(String(describing: error))")
-//                return
-//            }
-//            
-//            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-//                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-//                print("response = \(String(describing: response))")
-//            }
-//            
-//            let responseString = String(data: data, encoding: .utf8)
-//            print("responseString = \(String(describing: responseString))")
-//        }
-//        task.resume()
-//    }
     
 }
 
