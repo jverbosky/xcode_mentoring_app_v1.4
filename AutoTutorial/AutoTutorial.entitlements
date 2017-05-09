@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)co.ios.AutoTutorial</string>
+		<string>$(AppIdentifierPrefix)org.minedminds.MMMentoring</string>
 	</array>
 </dict>
 </plist>

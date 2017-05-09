@@ -22,6 +22,8 @@
 		0F9860D21EBEBD0B00C44319 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9860D11EBEBD0B00C44319 /* FBSDKLoginKit.framework */; };
 		0F9860D61EBEBD3600C44319 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9860D51EBEBD3600C44319 /* Bolts.framework */; };
 		B2B1A8DF1EC0F69C0072004A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2B1A8DE1EC0F69C0072004A /* GoogleService-Info.plist */; };
+		B2B1A8E11EC15BDD0072004A /* Login.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2B1A8E01EC15BDD0072004A /* Login.plist */; };
+		B2B1A8E31EC15BED0072004A /* MMMentoringLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B1A8E21EC15BED0072004A /* MMMentoringLogo.png */; };
 		F5B720DC716360CA2094FC79 /* Pods_AutoTutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8122E1AE4801D213BD8B0A8F /* Pods_AutoTutorial.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		562FF988BE532C9A349A8630 /* Pods-AutoTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoTutorial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AutoTutorial/Pods-AutoTutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		8122E1AE4801D213BD8B0A8F /* Pods_AutoTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoTutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2B1A8DE1EC0F69C0072004A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B2B1A8E01EC15BDD0072004A /* Login.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Login.plist; sourceTree = "<group>"; };
+		B2B1A8E21EC15BED0072004A /* MMMentoringLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMMentoringLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,8 @@
 				0F9468871EBA94A400442C36 /* LaunchScreen.storyboard */,
 				0F94688A1EBA94A400442C36 /* Info.plist */,
 				B2B1A8DE1EC0F69C0072004A /* GoogleService-Info.plist */,
+				B2B1A8E01EC15BDD0072004A /* Login.plist */,
+				B2B1A8E21EC15BED0072004A /* MMMentoringLogo.png */,
 				0F58EC621EBAA0D900C64606 /* MainController.swift */,
 				0F58EC661EBACA1500C64606 /* Mentors.swift */,
 				0F58EC681EBACE5400C64606 /* Mentees.swift */,
@@ -303,8 +309,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F9468891EBA94A400442C36 /* LaunchScreen.storyboard in Resources */,
+				B2B1A8E11EC15BDD0072004A /* Login.plist in Resources */,
 				B2B1A8DF1EC0F69C0072004A /* GoogleService-Info.plist in Resources */,
 				0F58EC651EBAC13400C64606 /* Images.xcassets in Resources */,
+				B2B1A8E31EC15BED0072004A /* MMMentoringLogo.png in Resources */,
 				0F9468841EBA94A400442C36 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
