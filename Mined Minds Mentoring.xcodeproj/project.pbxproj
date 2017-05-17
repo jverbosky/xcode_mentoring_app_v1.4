@@ -21,6 +21,7 @@
 		0F9860D01EBEBCF300C44319 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9860CF1EBEBCF300C44319 /* FBSDKCoreKit.framework */; };
 		0F9860D21EBEBD0B00C44319 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9860D11EBEBD0B00C44319 /* FBSDKLoginKit.framework */; };
 		0F9860D61EBEBD3600C44319 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9860D51EBEBD3600C44319 /* Bolts.framework */; };
+		B276205A1ECCA221001DE0E2 /* PushNotifData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27620591ECCA221001DE0E2 /* PushNotifData.swift */; };
 		B2B1A8DF1EC0F69C0072004A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2B1A8DE1EC0F69C0072004A /* GoogleService-Info.plist */; };
 		B2B1A8E11EC15BDD0072004A /* Login.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2B1A8E01EC15BDD0072004A /* Login.plist */; };
 		B2B1A8E31EC15BED0072004A /* MMMentoringLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B1A8E21EC15BED0072004A /* MMMentoringLogo.png */; };
@@ -69,6 +70,7 @@
 		0F9860D51EBEBD3600C44319 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		562FF988BE532C9A349A8630 /* Pods-AutoTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoTutorial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AutoTutorial/Pods-AutoTutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		8122E1AE4801D213BD8B0A8F /* Pods_AutoTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoTutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B27620591ECCA221001DE0E2 /* PushNotifData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifData.swift; sourceTree = "<group>"; };
 		B2B1A8DE1EC0F69C0072004A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2B1A8E01EC15BDD0072004A /* Login.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Login.plist; sourceTree = "<group>"; };
 		B2B1A8E21EC15BED0072004A /* MMMentoringLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MMMentoringLogo.png; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				0F9860CE1EBE950900C44319 /* AutoTutorial.entitlements */,
 				0F94687E1EBA94A400442C36 /* AppDelegate.swift */,
+				B27620591ECCA221001DE0E2 /* PushNotifData.swift */,
 				0F9468801EBA94A400442C36 /* ViewController.swift */,
 				0F9468821EBA94A400442C36 /* Main.storyboard */,
 				0F58EC641EBAC13400C64606 /* Images.xcassets */,
@@ -388,6 +391,7 @@
 			files = (
 				0F58EC671EBACA1500C64606 /* Mentors.swift in Sources */,
 				0F58EC6B1EBACE8F00C64606 /* Request.swift in Sources */,
+				B276205A1ECCA221001DE0E2 /* PushNotifData.swift in Sources */,
 				0F9468811EBA94A400442C36 /* ViewController.swift in Sources */,
 				0F58EC631EBAA0D900C64606 /* MainController.swift in Sources */,
 				0F94687F1EBA94A400442C36 /* AppDelegate.swift in Sources */,
