@@ -15,7 +15,7 @@ class Mentees: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let url=URL(string: "http://mentor-mentee-app.herokuapp.com/mentee_dashboard")
+        let url=URL(string: "https://mentor-mentee-app-mobile.herokuapp.com/mentee_dashboard")
         menteeWebView.loadRequest(URLRequest(url: url!))
 
     }

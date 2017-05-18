@@ -254,7 +254,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "Tula Ram Subba";
+				ORGANIZATIONNAME = "John C. Verbosky";
 				TargetAttributes = {
 					0F94687A1EBA94A400442C36 = {
 						CreatedOnToolsVersion = 8.3.2;

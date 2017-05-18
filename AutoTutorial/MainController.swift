@@ -26,7 +26,7 @@ class MainController: UIViewController {
         myScrollView.contentSize.height = 1000
         myShadowView.layer.shadowOpacity = 1
         myShadowView.layer.shadowRadius = 6
-        let url=URL(string: "http://mentor-mentee-app.herokuapp.com/")
+        let url=URL(string: "https://mentor-mentee-app-mobile.herokuapp.com")
         myWebView.loadRequest(URLRequest(url: url!))
 
     }
