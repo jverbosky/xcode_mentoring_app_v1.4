@@ -16,11 +16,11 @@ Highlights include:
 
 ## Screenshots ##
 
-!(http://imgur.com/VwhPxdm)
+[Login Screen](http://imgur.com/VwhPxdm "Login Screen")
 
-!(http://imgur.com/cjiCxMc)
+[Slide Menu](http://imgur.com/cjiCxMc "Slide Menu")
 
-!(http://imgur.com/X8cfg4e)
+[Push Notification](http://imgur.com/X8cfg4e "Push Notification")
 
 ----------
 
